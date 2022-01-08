@@ -1,5 +1,6 @@
 module FGram.Requests
 
+open System.Threading
 open FGram.Types
 
 type RequestType =
@@ -9,8 +10,12 @@ type RequestType =
 type IRequest<'a> =
     abstract MethodName : string
 
-type GetUpdatesRequest() =
-    interface IRequest<Result> with
+type GetUpdatesRequest =
+    { Offset: int64
+      Limit: int option
+      Timeout: int option
+      AllowedUpdates: string option }
+    interface IRequest<list<Update>> with
         member _.MethodName = "getUpdates"
 
 type GetMeRequest() =

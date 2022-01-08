@@ -69,7 +69,7 @@ type Bot(token: string) =
     member this.Token = token
 
     member this.startAsync(onUpdate: list<Update> -> bool) =
-        async { return! this.getUpdates onUpdate }
+        async { return! this.getUpdates onUpdate 0L }
 
     member this.sendRequest(request: IRequest<'a>, ?requestType: RequestType) =
         async {
@@ -89,14 +89,18 @@ type Bot(token: string) =
                     | Post -> postRequest.Force()
                 | None -> postRequest.Force()
 
-            return Json.deserializeEx<'a> config result
+            return Json.deserializeEx<Result<'a>> config result
         }
 
-    member this.getUpdates(onUpdate: list<Update> -> bool) =
-        let request = GetUpdatesRequest()
+    member this.getUpdates (onUpdate: list<Update> -> bool) offset =
+        let request =
+            { Offset = offset
+              Limit = None
+              Timeout = None
+              AllowedUpdates = None }
 
         let result =
-            this.sendRequest (request, Get)
+            this.sendRequest request
             |> Async.RunSynchronously
 
         if result.Ok && result.Result.IsSome then
@@ -105,7 +109,12 @@ type Bot(token: string) =
 
         Thread.Sleep(10000)
 
-        this.getUpdates onUpdate
+        let offset =
+            match result.Result with
+            | Some updates -> updates.Head.UpdateId + 1L
+            | None -> 0L
+
+        this.getUpdates onUpdate offset
 
     member this.getMe =
         let request = GetMeRequest()

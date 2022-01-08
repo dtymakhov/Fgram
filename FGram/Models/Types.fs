@@ -385,8 +385,6 @@ type InputMessageContent =
     | VenueMessage of InputVenueMessageContent
     | ContactMessage of InputContactMessageContent
 
-type Result =
-    { Ok: bool
-      Result: list<Update> option }
+type Result<'a> = { Ok: bool; Result: 'a option }
 
 type UserResult = { Ok: bool; Result: User option }
