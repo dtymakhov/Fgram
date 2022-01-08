@@ -385,6 +385,12 @@ type InputMessageContent =
     | VenueMessage of InputVenueMessageContent
     | ContactMessage of InputContactMessageContent
 
+type Config =
+    { Token: string
+      Limit: int option
+      Timeout: int option
+      AllowedUpdates: string option }
+
 type Result<'a> =
     { Ok: bool
       Result: 'a option

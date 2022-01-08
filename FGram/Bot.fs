@@ -5,7 +5,6 @@ open System.Collections.Generic
 open System.Net.Http
 open System.Reflection
 open System.Text
-open System.Threading
 open FSharp.Json
 open FGram.HttpService
 open FGram.Requests
@@ -61,44 +60,43 @@ let invokeCommands (updates: list<Update>) =
     updates
     |> List.iter (fun x -> invokeCommand x.Message.Value)
 
-let config =
+let jsonConfig =
     JsonConfig.create (jsonFieldNaming = Json.snakeCase, serializeNone = SerializeNone.Omit)
 
-type Bot(token: string) =
-    member this.Token = token
-
+type Bot(config: Config) =
     member this.startAsync(onUpdate: list<Update> -> bool) =
         async { return! this.getUpdates onUpdate 0L }
 
     member this.sendRequest(request: IRequest<'a>) =
         async {
-            let json = Json.serializeEx config request
-            let url = $"/bot{this.Token}/{request.MethodName}"
+            let json = Json.serializeEx jsonConfig request
+
+            let url =
+                $"/bot{config.Token}/{request.MethodName}"
+
             let! result = postAsync (url, json)
-            return Json.deserializeEx<Result<'a>> config result
+            return Json.deserializeEx<Result<'a>> jsonConfig result
         }
 
     member this.getMe =
         async {
-            let! result = getAsync $"/bot{this.Token}/getMe"
-            return Json.deserializeEx<Result<User>> config result
+            let! result = getAsync $"/bot{config.Token}/getMe"
+            return Json.deserializeEx<Result<User>> jsonConfig result
         }
 
     member this.getUpdates (onUpdate: list<Update> -> bool) offset =
         async {
             let request =
                 { Offset = offset
-                  Limit = None
-                  Timeout = None
-                  AllowedUpdates = None }
+                  Limit = config.Limit
+                  Timeout = config.Timeout
+                  AllowedUpdates = config.AllowedUpdates }
 
             let! result = this.sendRequest request
 
             if result.Ok && result.Result.IsSome then
                 getCommands result.Result.Value |> invokeCommands
                 onUpdate result.Result.Value |> ignore
-
-            Thread.Sleep(10000)
 
             let offset =
                 match result.Result with
