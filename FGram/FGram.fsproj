@@ -9,6 +9,7 @@
         <Compile Include="Models\Types.fs" />
         <Compile Include="Models\Requests.fs" />
         <Compile Include="HttpService.fs" />
+        <Compile Include="CommandsHelper.fs" />
         <Compile Include="Bot.fs" />
         <Compile Include="Methods.fs" />
     </ItemGroup>

@@ -3,6 +3,10 @@ module FGram.Types
 open System
 open FSharp.Json
 
+[<AttributeUsage(AttributeTargets.Method, AllowMultiple = false)>]
+type CommandAttribute(_name: string) =
+    inherit Attribute()
+    
 type ChatType =
     | Private
     | Group

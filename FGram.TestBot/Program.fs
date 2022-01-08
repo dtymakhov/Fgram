@@ -1,4 +1,3 @@
-open FGram.TestBot
 open FGram.TestBot.Token
 open FGram.Bot
 open FGram.Types
