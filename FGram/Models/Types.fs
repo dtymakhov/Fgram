@@ -385,4 +385,8 @@ type InputMessageContent =
     | VenueMessage of InputVenueMessageContent
     | ContactMessage of InputContactMessageContent
 
-type Result<'a> = { Ok: bool; Result: 'a option }
+type Result<'a> =
+    { Ok: bool
+      Result: 'a option
+      ErrorCode: int option
+      Description: string option }

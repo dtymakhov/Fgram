@@ -10,7 +10,6 @@ httpClient.BaseAddress <- Uri("https://api.telegram.org/")
 let getAsync (url: string) =
     async {
         let! response = httpClient.GetAsync(url) |> Async.AwaitTask
-        response.EnsureSuccessStatusCode() |> ignore
 
         let! content =
             response.Content.ReadAsStringAsync()

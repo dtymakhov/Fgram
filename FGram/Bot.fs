@@ -102,8 +102,14 @@ type Bot(token: string) =
 
             let offset =
                 match result.Result with
-                | Some updates -> updates.Head.UpdateId + 1L
-                | None -> 0L
+                | Some result when result.IsEmpty -> offset
+                | Some updates ->
+                    updates
+                    |> List.map (fun x -> x.UpdateId)
+                    |> List.max
+                    |> (+) 1L
+                | None -> offset
 
-            this.getUpdates onUpdate offset |> Async.RunSynchronously
+            this.getUpdates onUpdate offset
+            |> Async.RunSynchronously
         }
