@@ -105,5 +105,5 @@ type Bot(token: string) =
                 | Some updates -> updates.Head.UpdateId + 1L
                 | None -> 0L
 
-            this.getUpdates onUpdate offset |> ignore
+            this.getUpdates onUpdate offset |> Async.RunSynchronously
         }
