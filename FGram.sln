@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FGram", "FGram\FGram.fsproj", "{D80E8CE4-DE00-4A31-8A4F-4CA30ED55603}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FGram.TestBot", "FGram.TestBot\FGram.TestBot.fsproj", "{63DF1D50-240F-418D-896C-9686FB43B001}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D80E8CE4-DE00-4A31-8A4F-4CA30ED55603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80E8CE4-DE00-4A31-8A4F-4CA30ED55603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80E8CE4-DE00-4A31-8A4F-4CA30ED55603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80E8CE4-DE00-4A31-8A4F-4CA30ED55603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DF1D50-240F-418D-896C-9686FB43B001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DF1D50-240F-418D-896C-9686FB43B001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63DF1D50-240F-418D-896C-9686FB43B001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DF1D50-240F-418D-896C-9686FB43B001}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
