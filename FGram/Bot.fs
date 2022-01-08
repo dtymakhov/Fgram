@@ -49,9 +49,9 @@ let invokeCommand (message: Message) =
 
     let command =
         if charLocation > 0 then
-            message.Text.Value.Substring(0, charLocation)
+            message.Text.Value.Substring(1, charLocation)
         else
-            message.Text.Value
+            message.Text.Value.Substring(1)
 
     match getMethod command with
     | Some method -> method.Invoke(null, [| message |]) |> ignore

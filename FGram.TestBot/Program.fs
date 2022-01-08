@@ -5,7 +5,7 @@ open FGram.Methods
 
 let bot = Bot(token)
 
-[<Command("/start")>]
+[<Command("start")>]
 let onStart (message: Message) =
     bot |> sendMessage message.Chat.Id "Hello" |> Async.RunSynchronously |> ignore
 
