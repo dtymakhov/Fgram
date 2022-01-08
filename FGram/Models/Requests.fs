@@ -1,11 +1,6 @@
 module FGram.Requests
 
-open System.Threading
 open FGram.Types
-
-type RequestType =
-    | Get
-    | Post
 
 type IRequest<'a> =
     abstract MethodName : string
@@ -17,10 +12,6 @@ type GetUpdatesRequest =
       AllowedUpdates: string option }
     interface IRequest<list<Update>> with
         member _.MethodName = "getUpdates"
-
-type GetMeRequest() =
-    interface IRequest<User> with
-        member _.MethodName = "getMe"
 
 type SendMessageRequest =
     { ChatId: int64

@@ -386,5 +386,3 @@ type InputMessageContent =
     | ContactMessage of InputContactMessageContent
 
 type Result<'a> = { Ok: bool; Result: 'a option }
-
-type UserResult = { Ok: bool; Result: User option }

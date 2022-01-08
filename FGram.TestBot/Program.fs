@@ -8,9 +8,8 @@ let bot = Bot(token)
 [<Command("/start")>]
 let onStart (message: Message) =
     bot |> sendMessage message.Chat.Id "Hello" |> Async.RunSynchronously |> ignore
-    1
 
-let onUpdateReceive (updates: List<Update>) =
+let onUpdateReceive (_: List<Update>) =
     true
 
 let main () =

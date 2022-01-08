@@ -3,10 +3,6 @@ module FGram.Methods
 open FGram.Bot
 open FGram.Requests
 
-let getMe (bot: Bot) =
-    let request = GetMeRequest()
-    bot.sendRequest request
-
 let sendMessageGeneral (request: SendMessageRequest) (bot: Bot) = bot.sendRequest request
 
 let sendMessage chatId text (bot: Bot) =
@@ -17,7 +13,7 @@ let sendMessage chatId text (bot: Bot) =
 
     bot.sendRequest request
 
-let sendMessageReplyTo chatId text replyToMessageId (bot: Bot) =
+let replyTo chatId text replyToMessageId (bot: Bot) =
     let request =
         { emptySendMessageRequest with
               ChatId = chatId
