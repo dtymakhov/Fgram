@@ -6,7 +6,7 @@ open FSharp.Json
 [<AttributeUsage(AttributeTargets.Method, AllowMultiple = false)>]
 type CommandAttribute(_name: string) =
     inherit Attribute()
-    
+
 type ChatType =
     | Private
     | Group
@@ -44,6 +44,11 @@ type ChatMemberStatus =
     | Left
     | Kicked
     | Unknown
+
+[<JsonUnion(Mode = UnionMode.AsValue)>]
+type ChatId =
+    | Id of int64
+    | Username of string
 
 type Location = { Longitude: double; Latitude: double }
 

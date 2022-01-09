@@ -14,7 +14,7 @@ type GetUpdatesRequest =
         member _.MethodName = "getUpdates"
 
 type SendMessageRequest =
-    { ChatId: int64
+    { ChatId: ChatId
       Text: string
       ParseMode: ParseMode option
       DisableWebPagePreview: bool option
@@ -25,7 +25,7 @@ type SendMessageRequest =
         member _.MethodName = "sendMessage"
 
 let emptySendMessageRequest =
-    { ChatId = 0L
+    { ChatId = Id 0L
       Text = ""
       ParseMode = None
       DisableWebPagePreview = None
@@ -34,7 +34,7 @@ let emptySendMessageRequest =
       ReplyMarkup = None }
 
 type ForwardMessageRequest =
-    { ChatId: int64
+    { ChatId: ChatId
       FromChatId: int64
       MessageId: int64
       ProtectContent: bool option
@@ -43,7 +43,7 @@ type ForwardMessageRequest =
         member _.MethodName = "forwardMessage"
 
 let emptyForwardMessageRequest =
-    { ChatId = 0L
+    { ChatId = Id 0L
       FromChatId = 0L
       MessageId = 0L
       ProtectContent = None

@@ -14,7 +14,7 @@ let bot = Bot(config)
 [<Command("start")>]
 let onStart (message: Message) =
     bot
-    |> sendMessage message.Chat.Id "Hello"
+    |> sendMessage (Id message.Chat.Id) "Hello"
     |> Async.RunSynchronously
     |> ignore
 

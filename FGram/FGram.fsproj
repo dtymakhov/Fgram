@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FSharp.Json" Version="0.4.1" />
+      <PackageReference Include="Dtymakhov.FSharp.Json" Version="0.4.2" />
     </ItemGroup>
 
 </Project>
