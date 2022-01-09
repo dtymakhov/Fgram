@@ -1,6 +1,7 @@
 module FGram.Types
 
 open System
+open System.IO
 open FSharp.Json
 
 [<AttributeUsage(AttributeTargets.Method, AllowMultiple = false)>]
@@ -49,6 +50,11 @@ type ChatMemberStatus =
 type ChatId =
     | Id of int64
     | Username of string
+
+[<JsonUnion(Mode = UnionMode.AsValue)>]
+type InputFile =
+    | Url of string 
+    | InputFile of string * Stream
 
 type Location = { Longitude: double; Latitude: double }
 
@@ -270,7 +276,7 @@ and Message =
       Audio: Audio option
       Document: Document option
       Animation: Animation option
-      Photo: PhotoSize seq option
+      Photo: PhotoSize list option
       Sticker: Sticker option
       Video: Video option
       Voice: Voice option

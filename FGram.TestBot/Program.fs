@@ -18,6 +18,13 @@ let onStart (message: Message) =
     |> Async.RunSynchronously
     |> ignore
 
+[<Command("sendPhoto")>]
+let onSendPhoto (message: Message) =
+    bot
+    |> sendPhoto (Id message.Chat.Id) (Url "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg")
+    |> Async.RunSynchronously
+    |> ignore
+
 let onUpdateReceive (_: List<Update>) = true
 
 let main () =

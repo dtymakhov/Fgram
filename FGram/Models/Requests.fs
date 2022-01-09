@@ -1,5 +1,7 @@
 module FGram.Requests
 
+open System
+open System.IO
 open FGram.Types
 
 type IRequest<'a> =
@@ -48,3 +50,24 @@ let emptyForwardMessageRequest =
       MessageId = 0L
       ProtectContent = None
       DisableNotification = None }
+
+type SendPhotoRequest =
+    { ChatId: ChatId
+      Photo: InputFile
+      Caption: string option
+      ParseMode: ParseMode option
+      DisableNotification: bool option
+      ReplyToMessageId: int64 option
+      ReplyMarkup: Markup option }
+    interface IRequest<Message> with
+        member _.MethodName = "sendPhoto"
+
+// TODO: Add ability to serialize Uri to Json library. Replace InputFile.Url of string with InputFile.Url of Uri
+let emptySendPhotoRequest =
+    { ChatId = Id 0L
+      Photo = InputFile ("", Stream.Null)
+      Caption = None
+      ParseMode = None
+      DisableNotification = None
+      ReplyToMessageId = None
+      ReplyMarkup = None }

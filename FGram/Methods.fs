@@ -2,6 +2,7 @@ module FGram.Methods
 
 open FGram.Bot
 open FGram.Requests
+open FGram.Types
 
 let sendMessageGeneral (request: SendMessageRequest) (bot: Bot) = bot.sendRequest request
 
@@ -30,5 +31,15 @@ let forwardMessage chatId fromChatId messageId (bot: Bot) =
               ChatId = chatId
               FromChatId = fromChatId
               MessageId = messageId }
+
+    bot.sendRequest request
+
+let sendPhotoGeneral (request: SendPhotoRequest) (bot: Bot) = bot.sendRequest request
+
+let sendPhoto chatId photo (bot: Bot) =
+    let request =
+        { emptySendPhotoRequest with
+              ChatId = chatId
+              Photo = photo }
 
     bot.sendRequest request
