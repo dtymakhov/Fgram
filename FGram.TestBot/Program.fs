@@ -18,10 +18,27 @@ let onStart (message: Message) =
     |> Async.RunSynchronously
     |> ignore
 
+let photoUrl =
+    "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg"
+
 [<Command("sendPhoto")>]
 let onSendPhoto (message: Message) =
     bot
-    |> sendPhoto (Id message.Chat.Id) (Url "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg")
+    |> sendPhoto (Id message.Chat.Id) (Url photoUrl)
+    |> Async.RunSynchronously
+    |> ignore
+
+[<Command("sendPhotoWithCaption")>]
+let onSendPhotoWithCaption (message: Message) =
+    bot
+    |> sendPhotoWithCaption (Id message.Chat.Id) (Url photoUrl) "Caption"
+    |> Async.RunSynchronously
+    |> ignore
+
+[<Command("replyToPhoto")>]
+let onReplyPhoto (message: Message) =
+    bot
+    |> replyToPhoto (Id message.Chat.Id) (Url photoUrl) message.MessageId
     |> Async.RunSynchronously
     |> ignore
 
