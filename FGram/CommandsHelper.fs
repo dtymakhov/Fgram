@@ -26,7 +26,10 @@ let internal getMethod name =
 
 let isCommand (message: Message option) =
     match message with
-    | Some m -> m.Text.Value.StartsWith("/")
+    | Some m ->
+        match m.Text with
+        | Some text -> text.StartsWith("/")
+        | None -> false
     | None -> false
 
 let getCommands (updates: list<Update>) =

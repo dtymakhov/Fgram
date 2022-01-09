@@ -15,6 +15,11 @@ type GetUpdatesRequest =
     interface IRequest<list<Update>> with
         member _.MethodName = "getUpdates"
 
+type GetChatRequest =
+    { ChatId: ChatId }
+    interface IRequest<Chat> with
+        member _.MethodName = "getCHat"
+
 type SendMessageRequest =
     { ChatId: ChatId
       Text: string
@@ -65,7 +70,7 @@ type SendPhotoRequest =
 // TODO: Add ability to serialize Uri to Json library. Replace InputFile.Url of string with InputFile.Url of Uri
 let emptySendPhotoRequest =
     { ChatId = Id 0L
-      Photo = InputFile ("", Stream.Null)
+      Photo = InputFile("", Stream.Null)
       Caption = None
       ParseMode = None
       DisableNotification = None

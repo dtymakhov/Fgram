@@ -42,6 +42,13 @@ let onReplyPhoto (message: Message) =
     |> Async.RunSynchronously
     |> ignore
 
+[<Command("getChat")>]
+let onGetChat (message: Message) =
+    bot
+    |> sendMessage (Id message.Chat.Id) "Hello"
+    |> Async.RunSynchronously
+    |> ignore
+
 let onUpdateReceive (_: List<Update>) = true
 
 let main () =

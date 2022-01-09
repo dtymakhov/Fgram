@@ -2,6 +2,11 @@ module FGram.Methods
 
 open FGram.Bot
 open FGram.Requests
+open FGram.Types
+
+let getChat chatId (bot: Bot) =
+    let request = { ChatId = chatId }
+    bot.sendRequest request
 
 let sendMessageGeneral (request: SendMessageRequest) (bot: Bot) = bot.sendRequest request
 

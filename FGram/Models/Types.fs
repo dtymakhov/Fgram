@@ -11,7 +11,7 @@ type CommandAttribute(_name: string) =
 type ChatType =
     | Private
     | Group
-    | SuperGroup
+    | Supergroup
     | Channel
     | Unknown
 
