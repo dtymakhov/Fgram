@@ -109,10 +109,10 @@ type KeyboardButton =
       RequestLocation: bool option }
 
 type InlineKeyboardMarkup =
-    { InlineKeyboard: InlineKeyboardButton seq seq }
+    { InlineKeyboard: InlineKeyboardButton list list }
 
 type ReplyKeyboardMarkup =
-    { Keyboard: KeyboardButton seq seq
+    { Keyboard: KeyboardButton list list
       ResizeKeyboard: bool option
       OneTimeKeyboard: bool option
       Selective: bool option }
@@ -192,7 +192,7 @@ and StickerSet =
       Title: string
       IsAnimated: bool
       ContainsMasks: bool
-      Stickers: Sticker seq }
+      Stickers: Sticker list }
 
 and Video =
     { FileId: string
@@ -225,7 +225,7 @@ and Venue =
 
 and UserProfilePhotos =
     { TotalCount: int
-      Photos: seq<seq<PhotoSize>> }
+      Photos: list<list<PhotoSize>> }
 
 and File =
     { FileId: string
@@ -272,7 +272,7 @@ and Message =
       AuthorSignature: string option
       Text: string option
       Entities: MessageEntity List option
-      CaptionEntities: MessageEntity seq option
+      CaptionEntities: MessageEntity list option
       Audio: Audio option
       Document: Document option
       Animation: Animation option
@@ -286,10 +286,10 @@ and Message =
       Location: Location option
       Venue: Venue option
       Poll: Poll option
-      NewChatMembers: User seq option
+      NewChatMembers: User list option
       LeftChatMember: User option
       NewChatTitle: string option
-      NewChatPhoto: PhotoSize seq option
+      NewChatPhoto: PhotoSize list option
       DeleteChatPhoto: bool option
       GroupChatCreated: bool option
       SupergroupChatCreated: bool option
