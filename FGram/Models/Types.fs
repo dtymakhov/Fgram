@@ -53,10 +53,18 @@ type ChatId =
 
 [<JsonUnion(Mode = UnionMode.AsValue)>]
 type InputFile =
-    | Url of string 
+    | Url of string
     | InputFile of string * Stream
 
-type Location = { Longitude: double; Latitude: double }
+type Location =
+    { Longitude: double
+      Latitude: double
+      HorizontalAccuracy: double option
+      LivePeriod: int option
+      Heading: int option
+      ProximityAlertRadius: int option }
+
+type ChatLocation = { Location: Location; Address: string }
 
 type User =
     { Id: int64
@@ -132,14 +140,20 @@ type Chat =
       Username: string option
       FirstName: string option
       LastName: string option
-      AllMembersAreAdministrators: bool option
       Photo: ChatPhoto option
+      Bio: string option
+      HasPrivateForwards: bool option
       Description: string option
       InviteLink: string option
       PinnedMessage: Message option
       Permissions: ChatPermissions option
+      SlowModeDelay: int option
+      MessageAutoDeleteTime: int option
+      HasProtectedContent: bool option
       StickerSetName: string option
-      CanSetStickerSet: bool option }
+      LinkedChatId: int64 option
+      CanSetStickerSet: bool option
+      Location: ChatLocation option }
 
 and MessageEntity =
     { Type: string
