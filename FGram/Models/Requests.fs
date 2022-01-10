@@ -100,3 +100,9 @@ type EditMessageCaptionRequest =
       ReplyMarkup: InlineKeyboardMarkup option }
     interface IRequest<Message> with
         member _.MethodName = "editMessageCaption"
+
+type DeleteMessageRequest =
+    { ChatId: ChatId
+      MessageId: int64 }
+    interface IRequest<bool> with
+        member _.MethodName = "deleteMessage"

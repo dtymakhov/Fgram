@@ -51,18 +51,35 @@ let onGetChat (message: Message) =
     |> ignore
 
 [<Command("editMessage")>]
-let onEditChat (message: Message) =
+let onEditMessage (message: Message) =
     let result =
         bot
         |> sendMessage (Id message.Chat.Id) "Hello"
         |> Async.RunSynchronously
 
     Thread.Sleep(5000)
-    
+
     match result.Result with
     | Some message ->
         bot
         |> editText (Id message.Chat.Id) message.MessageId "Edited"
+        |> Async.RunSynchronously
+        |> ignore
+    | None -> None |> ignore
+
+[<Command("deleteMessage")>]
+let onDeleteMessage (message: Message) =
+    let result =
+        bot
+        |> sendMessage (Id message.Chat.Id) "Hello"
+        |> Async.RunSynchronously
+
+    Thread.Sleep(5000)
+
+    match result.Result with
+    | Some message ->
+        bot
+        |> deleteMessage (Id message.Chat.Id) message.MessageId
         |> Async.RunSynchronously
         |> ignore
     | None -> None |> ignore

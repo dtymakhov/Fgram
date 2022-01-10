@@ -95,3 +95,10 @@ let editCaption chatId messageId caption (bot: Bot) =
           ReplyMarkup = None }
 
     bot.sendRequest request
+
+let deleteMessage chatId messageId (bot: Bot) =
+    let request =
+        { ChatId = chatId
+          MessageId = messageId }
+
+    bot.sendRequest request
