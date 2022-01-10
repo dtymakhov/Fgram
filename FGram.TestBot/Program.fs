@@ -1,3 +1,4 @@
+open System
 open System.Threading
 open FGram.TestBot.Token
 open FGram.Bot
@@ -20,7 +21,7 @@ let onStart (message: Message) =
     |> ignore
 
 let photoUrl =
-    "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg"
+    Uri("https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg")
 
 [<Command("sendPhoto")>]
 let onSendPhoto (message: Message) =

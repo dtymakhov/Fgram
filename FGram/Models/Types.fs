@@ -7,7 +7,7 @@ open FSharp.Json
 [<AttributeUsage(AttributeTargets.Method, AllowMultiple = false)>]
 type CommandAttribute(_name: string) =
     inherit Attribute()
-    
+
 type ChatType =
     | Private
     | Group
@@ -53,7 +53,7 @@ type ChatId =
 
 [<JsonUnion(Mode = UnionMode.AsValue)>]
 type InputFile =
-    | Url of string
+    | [<JsonField(Transform = typeof<Transforms.UriTransform>)>] Url of Uri
     | InputFile of string * Stream
 
 type Location =

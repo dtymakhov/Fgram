@@ -67,7 +67,6 @@ type SendPhotoRequest =
     interface IRequest<Message> with
         member _.MethodName = "sendPhoto"
 
-// TODO: Add ability to serialize Uri to Json library. Replace InputFile.Url of string with InputFile.Url of Uri
 let emptySendPhotoRequest =
     { ChatId = Id 0L
       Photo = InputFile("", Stream.Null)
