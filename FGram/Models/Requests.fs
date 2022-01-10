@@ -106,3 +106,8 @@ type DeleteMessageRequest =
       MessageId: int64 }
     interface IRequest<bool> with
         member _.MethodName = "deleteMessage"
+
+type GetChatAdministratorsRequest =
+    { ChatId: ChatId }
+    interface IRequest<list<ChatMember>> with
+        member _.MethodName = "getChatAdministrators"

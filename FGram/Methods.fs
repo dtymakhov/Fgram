@@ -102,3 +102,8 @@ let deleteMessage chatId messageId (bot: Bot) =
           MessageId = messageId }
 
     bot.sendRequest request
+
+let getChatAdministrators chatId (bot: Bot) =
+    let request: GetChatAdministratorsRequest = { ChatId = chatId }
+
+    bot.sendRequest request
