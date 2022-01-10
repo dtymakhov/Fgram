@@ -112,3 +112,8 @@ let getChatMemberCount chatId (bot: Bot) =
     let request: GetChatMemberCountRequest = { ChatId = chatId }
 
     bot.sendRequest request
+
+let getChatMember chatId userId (bot: Bot) =
+    let request = { ChatId = chatId; UserId = userId }
+
+    bot.sendRequest request

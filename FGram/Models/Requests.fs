@@ -116,3 +116,9 @@ type GetChatMemberCountRequest =
     { ChatId: ChatId }
     interface IRequest<int> with
         member _.MethodName = "getChatMemberCount"
+
+type GetChatMemberRequest =
+    { ChatId: ChatId
+      UserId: int64 }
+    interface IRequest<ChatMember> with
+        member _.MethodName = "getChatMember"
