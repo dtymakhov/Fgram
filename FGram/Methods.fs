@@ -2,13 +2,10 @@ module FGram.Methods
 
 open FGram.Bot
 open FGram.Requests
-open FGram.Types
 
 let getChat chatId (bot: Bot) =
     let request = { ChatId = chatId }
     bot.sendRequest request
-
-let sendMessageGeneral (request: SendMessageRequest) (bot: Bot) = bot.sendRequest request
 
 let sendMessage chatId text (bot: Bot) =
     let request =
@@ -27,8 +24,6 @@ let replyTo chatId text replyToMessageId (bot: Bot) =
 
     bot.sendRequest request
 
-let forwardMessageGeneral (request: ForwardMessageRequest) (bot: Bot) = bot.sendRequest request
-
 let forwardMessage chatId fromChatId messageId (bot: Bot) =
     let request =
         { emptyForwardMessageRequest with
@@ -37,8 +32,6 @@ let forwardMessage chatId fromChatId messageId (bot: Bot) =
               MessageId = messageId }
 
     bot.sendRequest request
-
-let sendPhotoGeneral (request: SendPhotoRequest) (bot: Bot) = bot.sendRequest request
 
 // TODO: Fix InputFile of string * Stream
 let sendPhoto chatId photo (bot: Bot) =
@@ -74,5 +67,31 @@ let replyToPhotoWithCaption chatId photo replyToMessageId caption (bot: Bot) =
               Photo = photo
               ReplyToMessageId = replyToMessageId
               Caption = caption }
+
+    bot.sendRequest request
+
+let editText chatId messageId text (bot: Bot) =
+    let request =
+        { ChatId = chatId
+          MessageId = Some messageId
+          InlineMessageId = None
+          Text = text
+          ParseMode = None
+          Entities = None
+          DisableWebPagePreview = None
+          ReplyMarkup = None }
+
+    bot.sendRequest request
+
+let editCaption chatId messageId caption (bot: Bot) =
+    let request =
+        { ChatId = chatId
+          MessageId = Some messageId
+          InlineMessageId = None
+          Caption = caption
+          ParseMode = None
+          CaptionEntities = None
+          DisableWebPagePreview = None
+          ReplyMarkup = None }
 
     bot.sendRequest request

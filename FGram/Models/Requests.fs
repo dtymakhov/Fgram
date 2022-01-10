@@ -31,7 +31,7 @@ type SendMessageRequest =
     interface IRequest<Message> with
         member _.MethodName = "sendMessage"
 
-let emptySendMessageRequest =
+let internal emptySendMessageRequest =
     { ChatId = Id 0L
       Text = ""
       ParseMode = None
@@ -49,7 +49,7 @@ type ForwardMessageRequest =
     interface IRequest<Message> with
         member _.MethodName = "forwardMessage"
 
-let emptyForwardMessageRequest =
+let internal emptyForwardMessageRequest =
     { ChatId = Id 0L
       FromChatId = 0L
       MessageId = 0L
@@ -76,3 +76,27 @@ let emptySendPhotoRequest =
       DisableNotification = None
       ReplyToMessageId = None
       ReplyMarkup = None }
+
+type EditMessageTextRequest =
+    { ChatId: ChatId
+      MessageId: int64 option
+      InlineMessageId: int64 option
+      Text: string
+      ParseMode: ParseMode option
+      Entities: list<MessageEntity> option
+      DisableWebPagePreview: bool option
+      ReplyMarkup: InlineKeyboardMarkup option }
+    interface IRequest<Message> with
+        member _.MethodName = "editMessageText"
+
+type EditMessageCaptionRequest =
+    { ChatId: ChatId
+      MessageId: int64 option
+      InlineMessageId: int64 option
+      Caption: string option
+      ParseMode: ParseMode option
+      CaptionEntities: list<MessageEntity> option
+      DisableWebPagePreview: bool option
+      ReplyMarkup: InlineKeyboardMarkup option }
+    interface IRequest<Message> with
+        member _.MethodName = "editMessageCaption"

@@ -1,3 +1,4 @@
+open System.Threading
 open FGram.TestBot.Token
 open FGram.Bot
 open FGram.Types
@@ -48,6 +49,23 @@ let onGetChat (message: Message) =
     |> sendMessage (Id message.Chat.Id) "Hello"
     |> Async.RunSynchronously
     |> ignore
+
+[<Command("editMessage")>]
+let onEditChat (message: Message) =
+    let result =
+        bot
+        |> sendMessage (Id message.Chat.Id) "Hello"
+        |> Async.RunSynchronously
+
+    Thread.Sleep(5000)
+    
+    match result.Result with
+    | Some message ->
+        bot
+        |> editText (Id message.Chat.Id) message.MessageId "Edited"
+        |> Async.RunSynchronously
+        |> ignore
+    | None -> None |> ignore
 
 let onUpdateReceive (_: List<Update>) = true
 
