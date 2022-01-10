@@ -122,3 +122,8 @@ type GetChatMemberRequest =
       UserId: int64 }
     interface IRequest<ChatMember> with
         member _.MethodName = "getChatMember"
+
+type LeaveChatRequest =
+    { ChatId: ChatId }
+    interface IRequest<bool> with
+        member _.MethodName = "leaveChat"

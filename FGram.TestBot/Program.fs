@@ -99,6 +99,12 @@ let onGetAdmins (message: Message) =
         |> ignore
     | _ -> None |> ignore
 
+[<Command("leaveChat")>]
+let onLeaveChat (message: Message) =
+    bot
+    |> leaveChat (Id message.Chat.Id)
+    |> Async.RunSynchronously
+
 let onUpdateReceive (_: List<Update>) = true
 
 let main () =

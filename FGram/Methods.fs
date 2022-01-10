@@ -105,15 +105,16 @@ let deleteMessage chatId messageId (bot: Bot) =
 
 let getChatAdministrators chatId (bot: Bot) =
     let request: GetChatAdministratorsRequest = { ChatId = chatId }
-
     bot.sendRequest request
 
 let getChatMemberCount chatId (bot: Bot) =
     let request: GetChatMemberCountRequest = { ChatId = chatId }
-
     bot.sendRequest request
 
 let getChatMember chatId userId (bot: Bot) =
     let request = { ChatId = chatId; UserId = userId }
+    bot.sendRequest request
 
+let leaveChat chatId (bot: Bot) =
+    let request: LeaveChatRequest = { ChatId = chatId }
     bot.sendRequest request
