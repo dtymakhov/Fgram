@@ -84,6 +84,21 @@ let onDeleteMessage (message: Message) =
         |> ignore
     | None -> None |> ignore
 
+[<Command("getAdmins")>]
+let onGetAdmins (message: Message) =
+    let result =
+        bot
+        |> getChatAdministrators (Id message.Chat.Id)
+        |> Async.RunSynchronously
+
+    match result.Result with
+    | Some members when not members.IsEmpty ->
+        bot
+        |> sendMessage (Id message.Chat.Id) $"Hello @{members.Head.User.Username.Value}"
+        |> Async.RunSynchronously
+        |> ignore
+    | _ -> None |> ignore
+
 let onUpdateReceive (_: List<Update>) = true
 
 let main () =
