@@ -107,3 +107,8 @@ let getChatAdministrators chatId (bot: Bot) =
     let request: GetChatAdministratorsRequest = { ChatId = chatId }
 
     bot.sendRequest request
+
+let getChatMemberCount chatId (bot: Bot) =
+    let request: GetChatMemberCountRequest = { ChatId = chatId }
+
+    bot.sendRequest request

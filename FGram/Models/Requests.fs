@@ -111,3 +111,8 @@ type GetChatAdministratorsRequest =
     { ChatId: ChatId }
     interface IRequest<list<ChatMember>> with
         member _.MethodName = "getChatAdministrators"
+
+type GetChatMemberCountRequest =
+    { ChatId: ChatId }
+    interface IRequest<int> with
+        member _.MethodName = "getChatMemberCount"
