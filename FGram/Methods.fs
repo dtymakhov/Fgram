@@ -126,3 +126,10 @@ let pinChatMessage chatId messageId disableNotifications (bot: Bot) =
           DisableNotifications = disableNotifications }
 
     bot.sendRequest request
+
+let unpinChatMessage chatId messageId (bot: Bot) =
+    let request: UnpinChatMessageRequest =
+        { ChatId = chatId
+          MessageId = messageId }
+
+    bot.sendRequest request

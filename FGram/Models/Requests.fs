@@ -133,3 +133,9 @@ type PinChatMessageRequest =
       DisableNotifications: bool option }
     interface IRequest<bool> with
         member _.MethodName = "pinChatMessage"
+
+type UnpinChatMessageRequest =
+    { ChatId: ChatId
+      MessageId: int64 }
+    interface IRequest<bool> with
+        member _.MethodName = "unpinChatMessage"
