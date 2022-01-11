@@ -126,3 +126,10 @@ type LeaveChatRequest =
     { ChatId: ChatId }
     interface IRequest<bool> with
         member _.MethodName = "leaveChat"
+
+type PinChatMessageRequest =
+    { ChatId: ChatId
+      MessageId: int64
+      DisableNotifications: bool option }
+    interface IRequest<bool> with
+        member _.MethodName = "pinChatMessage"

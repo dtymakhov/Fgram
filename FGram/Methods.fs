@@ -118,3 +118,11 @@ let getChatMember chatId userId (bot: Bot) =
 let leaveChat chatId (bot: Bot) =
     let request: LeaveChatRequest = { ChatId = chatId }
     bot.sendRequest request
+
+let pinChatMessage chatId messageId disableNotifications (bot: Bot) =
+    let request: PinChatMessageRequest =
+        { ChatId = chatId
+          MessageId = messageId
+          DisableNotifications = disableNotifications }
+
+    bot.sendRequest request
