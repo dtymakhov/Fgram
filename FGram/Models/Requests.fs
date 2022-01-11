@@ -139,3 +139,8 @@ type UnpinChatMessageRequest =
       MessageId: int64 }
     interface IRequest<bool> with
         member _.MethodName = "unpinChatMessage"
+
+type UnpinAllChatMessagesRequest =
+    { ChatId: ChatId }
+    interface IRequest<bool> with
+        member _.MethodName = "unpinAllChatMessages"

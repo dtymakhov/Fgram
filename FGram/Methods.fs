@@ -133,3 +133,7 @@ let unpinChatMessage chatId messageId (bot: Bot) =
           MessageId = messageId }
 
     bot.sendRequest request
+
+let unpinAllChatMessages chatId (bot: Bot) =
+    let request: UnpinAllChatMessagesRequest = { ChatId = chatId }
+    bot.sendRequest request
