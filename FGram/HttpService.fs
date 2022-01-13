@@ -4,8 +4,8 @@ open System
 open System.Net.Http
 open System.Text
 
-let httpClient = new HttpClient()
-httpClient.BaseAddress <- Uri("https://api.telegram.org/")
+let httpClient =
+    new HttpClient(BaseAddress = Uri("https://api.telegram.org/"))
 
 let getAsync (url: string) =
     async {

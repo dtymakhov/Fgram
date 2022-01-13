@@ -33,9 +33,10 @@ let onSendPhoto (message: Message) =
 [<Command("sendPhotoWithCaption")>]
 let onSendPhotoWithCaption (message: Message) =
     bot
-    |> sendPhotoWithCaption (Id message.Chat.Id) (Url photoUrl) "Caption"
+    |> sendPhoto (Id message.Chat.Id) (Url photoUrl)
     |> Async.RunSynchronously
     |> ignore
+
 
 [<Command("replyToPhoto")>]
 let onReplyPhoto (message: Message) =
@@ -66,6 +67,7 @@ let onEditMessage (message: Message) =
         |> editText (Id message.Chat.Id) message.MessageId "Edited"
         |> Async.RunSynchronously
         |> ignore
+
     | None -> None |> ignore
 
 [<Command("deleteMessage")>]
